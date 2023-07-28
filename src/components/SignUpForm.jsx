@@ -13,10 +13,10 @@ const SignUpForm = ({setToken}) => {
                 headers:{
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    username: "some-username",
-                    password: "super-secret-123"
-                })
+                body: JSON.stringify(
+                    {username},
+                    {password}
+                )
             })
             const data = await response.json()
             setToken(data.token)
