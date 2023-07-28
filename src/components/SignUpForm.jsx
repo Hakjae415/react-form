@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 
-const SignUpForm = () => {
+const SignUpForm = ({setToken}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null)
@@ -19,7 +19,7 @@ const SignUpForm = () => {
                 })
             })
             const data = await response.json()
-            console.log(data)
+            setToken(data.token)
         } catch(error) {
             setError(error.message)
         }
