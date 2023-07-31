@@ -13,15 +13,15 @@ const SignUpForm = ({setToken}) => {
                 headers:{
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(
-                    {username},
-                    {password}
-                )
+                body: JSON.stringify({
+                    username,
+                    password
+            })
             })
             const data = await response.json()
             setToken(data.token)
-        } catch(error) {
-            setError(error.message)
+        } catch(err) {
+            setError(err.message)
         }
 
     }
@@ -32,18 +32,22 @@ const SignUpForm = ({setToken}) => {
             error && <p>{error}</p>
           }
           <form onSubmit={handleSubmit}>
-            <label>Username:{" "}</label>
+            <label>
+              Username:{" "}
               <input 
                 placeholder='Enter Username' 
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)}
                 />
-            <label>Password:{" "}</label>
+            </label>
+            <label>
+              Password:{" "}
               <input 
                 placeholder='Enter Password' 
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)}
                 />
+            </label>
             <button>Submit</button>
           </form>
         </>

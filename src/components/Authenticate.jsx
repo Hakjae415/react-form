@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 const Authenticate = ({ token }) => {
     const [successMessage, setSuccessMessage] = useState(null)
     const [error, setError] = useState(null)
+    const [userData, setUserData] = useState(null)
 
     const handleClick = async() => {
         console.log("handleclick")
@@ -16,6 +17,7 @@ const Authenticate = ({ token }) => {
             })
             const data = await response.json()
             setSuccessMessage(data.message)
+            setUserData(data.data)
             console.log(data)
         } catch(error) {
             setError(error.message)
@@ -28,6 +30,7 @@ const Authenticate = ({ token }) => {
           {successMessage && <p>{successMessage}</p>}
           {error && <p>{error}</p>}
           <button onClick={handleClick}>Authenticate Token</button>
+          {userData && <><p>Username: {userData.username}</p><p>IAT: {userData.iat}</p></>}
         </>
     )
 };
